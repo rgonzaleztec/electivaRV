@@ -1,6 +1,7 @@
 # VR Guías
 Este espacio es para aportar un conjunto de guías para el curso de realidad virtual, mismo que doy para programa de Ingeniero en Computación del Tecnológico de Costa Rica.
 El contenido estará principalmente en español, pero podrá contener enlaces e información en ingles.
+![VR](/vr.jpg)
 # Contenido
 Se podrá encontrar:
 
