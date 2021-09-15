@@ -1,2 +1,15 @@
-# electivaRV
-Contenido destinado a realidad virtual para móviles y para gafas inmersivas.
+# VR Guías
+Este espacio es para aportar un conjunto de guías para el curso de realidad virtual, mismo que doy para programa de Ingeniero en Computación del Tecnológico de Costa Rica.
+El contenido estará principalmente en español, pero podrá contener enlaces e información en ingles.
+# Contenido
+Se podrá encontrar:
+
+Contenido teórico
+Guías propias
+Guías de terceros
+Laboratorios a desarrollar
+Proyectos finales de estudiantes
+
+
+# Aviso
+El contenido se mantendrá actualizado e incialmente se basará en Unity 3D y los frameworks asociados para realidad virtual. Se trabajará con gafas de la marca Oculus y otras para aplicación móvil. El contenido de terceros podrá cambiar por lo que no me hago responsable del mismo.
