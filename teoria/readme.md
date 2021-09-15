@@ -1,1 +1,3 @@
-#Teoria sobre realidad Virtual
+# Teoria sobre realidad Virtual
+
+## Locomotion
