@@ -9,7 +9,7 @@ Se podrá encontrar:
 * [Contenido teórico](/teoria/readme.md)
 * Guías propias
 * [Guías de terceros](/guiaterceros/readme.md)
-* Laboratorios a desarrollar
+* [Laboratorios a desarrollar](/retos/readme.md)
 * Proyectos finales de estudiantes
 
 ## Aviso
