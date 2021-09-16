@@ -219,10 +219,10 @@ Como se puede observar en el script se implementan funciones para realizar accio
 Debemos crear un proyecto 3D con una escena en la que nos podamos desplazar.
 Para poder hacer un movimiento sin controles osea hacer locomotion podemos utilizar la posibilidad que tiene Uniti de decirnos si la camara se mueve, para el caso de nosotros necesitamos controlar si rota sobre el eje X. Con esto podremos determinar si la persona esta observando hacia abajo y utilizar esa interaccion para indicar que nos tenemos que desplazar.
 
-1 Requerimos adjuntar a la camara con CharacterController
-2 Tenemos que configurar el colinder para que este en una posicion funcional para la camara
-3 Debemos estimar cuantos grados de movimiento se pueden hacer
-4 Debemos crear un script para controlar ese movimiento y poderselo adjuntar al GameObject de la camara como componente
+1. Requerimos adjuntar a la camara con CharacterController
+2. Tenemos que configurar el colinder para que este en una posicion funcional para la camara
+3. Debemos estimar cuantos grados de movimiento se pueden hacer
+4. Debemos crear un script para controlar ese movimiento y poderselo adjuntar al GameObject de la camara como componente
 
 El script es:
 ```c#
