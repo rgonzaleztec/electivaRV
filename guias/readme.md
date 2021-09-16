@@ -5,7 +5,7 @@ De esta forma podemos crear aplicaciones sin mandos y que ademas puedan ser para
 
 ### Pasos Iniciales
 1. Crear un proyecto 3D
-2. Agregar el pluggin de Google Cardboard como se indica en el manual
+2. Agregar el pluggin de Google Cardboard como se indica en el manual en la seccion de guias de [terceros](/guiaterceros/readme.md)
 3. Crear una escena inicial con elementos como piso, paredes y elementos para interactuar
 
 ### Scripts Principales
