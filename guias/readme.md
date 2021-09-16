@@ -265,4 +265,6 @@ public class lookWalk : MonoBehaviour
 }
 ```
 
+## Utilizar NavMesh para desplasar persona en VR
+
 
