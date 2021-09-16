@@ -74,6 +74,195 @@ public class CameraPointer : MonoBehaviour
     }
 }
 ```
+Este script lo que hace es disparar el rayo para calcular si golpea a un objeto que es golpeable mediante un collinder, si lo logra porque esta en el rango de alcance,
+calcula su hit e indica que lo golpeo. Con esto podemos enviar un mensaje mediante el controlador de eventos de unity para decir que estamos tocando un objeto.
+Lo anterior se ve en la linea donde se indica "OnPointEnter". Este es el nombre de la funcion que va a ser implementada en el script de ObjectController.
+
+El script de ObjectCrontroller contiene algo asi:
+```c#
+public class ObjectController : MonoBehaviour
+{
+    /// <summary>
+    /// The material to use when this object is inactive (not being gazed at).
+    /// </summary>
+    public Material InactiveMaterial;
+
+    /// <summary>
+    /// The material to use when this object is active (gazed at).
+    /// </summary>
+    public Material GazedAtMaterial;
+
+    public AudioSource audioCapsula;
+    public TextMeshPro hitText;
+
+    // The objects are about 1 meter in radius, so the min/max target distance are
+    // set so that the objects are always within the room (which is about 5 meters
+    // across).
+    private const float _minObjectDistance = 2.5f;
+    private const float _maxObjectDistance = 3.5f;
+    private const float _minObjectHeight = 0.5f;
+    private const float _maxObjectHeight = 3.5f;
+
+    private Renderer _myRenderer;
+    private Vector3 _startingPosition;
+
+    private GameObject myCapsule;
+    private GameObject myTextPRO;
+    
+    /// <summary>
+    /// Start is called before the first frame update.
+    /// </summary>
+    public void Start()
+    {
+        _startingPosition = transform.parent.localPosition;
+        _myRenderer = GetComponent<Renderer>();
+        SetMaterial(false);
+        myCapsule = GameObject.Find("Capsule");
+        myTextPRO = GameObject.Find("Hits");
+        hitText = myTextPRO.GetComponent<TextMeshPro>();
+    }
+
+    /// <summary>
+    /// Teleports this instance randomly when triggered by a pointer click.
+    /// </summary>
+    public void TeleportRandomly()
+    {
+        // Picks a random sibling, activates it and deactivates itself.
+        int sibIdx = transform.GetSiblingIndex();
+        int numSibs = transform.parent.childCount;
+        sibIdx = (sibIdx + Random.Range(1, numSibs)) % numSibs;
+        GameObject randomSib = transform.parent.GetChild(sibIdx).gameObject;
+
+        // Computes new object's location.
+        float angle = Random.Range(-Mathf.PI, Mathf.PI);
+        float distance = Random.Range(_minObjectDistance, _maxObjectDistance);
+        float height = Random.Range(_minObjectHeight, _maxObjectHeight);
+        Vector3 newPos = new Vector3(Mathf.Cos(angle) * distance, height,
+                                     Mathf.Sin(angle) * distance);
+
+        // Moves the parent to the new position (siblings relative distance from their parent is 0).
+        transform.parent.localPosition = newPos;
+
+        randomSib.SetActive(true);
+        gameObject.SetActive(false);
+        SetMaterial(false);
+    }
+
+    /// <summary>
+    /// This method is called by the Main Camera when it starts gazing at this GameObject.
+    /// </summary>
+    public void OnPointerEnter()
+    {
+        SetMaterial(true);
+        hitText.text = "# de Hits: Incrementando"; 
+    }
+
+    // <summary>
+    /// This method is called by the Main Camera when it starts gazing at this GameObject Capsule.
+    /// </summary>
+     public void OnPointerEnter2()
+    {
+        SetMaterial(true);
+        audioCapsula.Play();
+    }
+
+    /// <summary>
+    /// This method is called by the Main Camera when it stops gazing at this GameObject.
+    /// </summary>
+    public void OnPointerExit()
+    {
+        SetMaterial(false);
+    }
+
+    /// <summary>
+    /// This method is called by the Main Camera when it stops gazing at this GameObject Capsule
+    /// </summary>
+    public void OnPointerExit2()
+    {
+        SetMaterial(false);
+        audioCapsula.Stop();
+
+    }
+    /// <summary>
+    /// This method is called by the Main Camera when it is gazing at this GameObject and the screen
+    /// is touched.
+    /// </summary>
+    public void OnPointerClick()
+    {
+        TeleportRandomly();
+    }
+
+    /// <summary>
+    /// Sets this instance's material according to gazedAt status.
+    /// </summary>
+    ///
+    /// <param name="gazedAt">
+    /// Value `true` if this object is being gazed at, `false` otherwise.
+    /// </param>
+    private void SetMaterial(bool gazedAt)
+    {
+        if (InactiveMaterial != null && GazedAtMaterial != null)
+        {
+            _myRenderer.material = gazedAt ? GazedAtMaterial : InactiveMaterial;
+        }
+    }
+
+  
+}
+```
+Como se puede observar en el script se implementan funciones para realizar acciones segun el tipo de evento que se invoco. Los eventos coinsiden con el nombre de la funcion, asi que si tienes o requieres muchos objetos con que interactuar aqui deberas implementarlos.
+
+
 
 
 ## Como desplazarse en movil VR sin controles
+Debemos crear un proyecto 3D con una escena en la que nos podamos desplazar.
+Para poder hacer un movimiento sin controles osea hacer locomotion podemos utilizar la posibilidad que tiene Uniti de decirnos si la camara se mueve, para el caso de nosotros necesitamos controlar si rota sobre el eje X. Con esto podremos determinar si la persona esta observando hacia abajo y utilizar esa interaccion para indicar que nos tenemos que desplazar.
+
+1 Requerimos adjuntar a la camara con CharacterController
+2 Tenemos que configurar el colinder para que este en una posicion funcional para la camara
+3 Debemos estimar cuantos grados de movimiento se pueden hacer
+4 Debemos crear un script para controlar ese movimiento y poderselo adjuntar al GameObject de la camara como componente
+
+El script es:
+```c#
+public class lookWalk : MonoBehaviour
+{
+    public Transform vrCamera;
+    public float puntolimite = 10.0f;
+
+    public float speed = 3.0f;
+
+    public bool moviendose;
+
+    public CharacterController myPersonaje;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        myPersonaje = GetComponent<CharacterController>();
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+       if (vrCamera.eulerAngles.x >= puntolimite && vrCamera.eulerAngles.x < 90.0f)
+        {
+            moviendose = true;
+        }
+       else
+        { 
+            moviendose = false;
+        }
+
+       if (moviendose)
+        {
+            Vector3 forward = vrCamera.TransformDirection(Vector3.forward);
+            myPersonaje.SimpleMove(forward * speed);
+        }
+    }
+}
+```
+
+
