@@ -7,7 +7,7 @@ El contenido estará principalmente en español, pero podrá contener enlaces e 
 Se podrá encontrar:
 
 * [Contenido teórico](/teoria/readme.md)
-* Guías propias
+* [Guías propias](/guias/readme.md)
 * [Guías de terceros](/guiaterceros/readme.md)
 * [Laboratorios a desarrollar](/retos/readme.md)
 * Proyectos finales de estudiantes
