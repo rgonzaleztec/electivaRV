@@ -1,0 +1,29 @@
+using Normal.Realtime;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+
+public class XRMultiplayer : MonoBehaviour
+{
+    // Start is called before the first frame update
+
+
+    public void RequestOwnership(XRBaseInteractable xrBaseInteractable)
+    {
+        var realtimeView = xrBaseInteractable.GetComponent<RealtimeView>();
+        var realtimeTransform = xrBaseInteractable.GetComponent<RealtimeTransform>();
+
+        if (realtimeView != null)
+        {
+            realtimeView.RequestOwnership();
+        }
+
+        if (realtimeTransform != null)
+        {
+            realtimeTransform.RequestOwnership();
+        }
+
+    }
+
+}
