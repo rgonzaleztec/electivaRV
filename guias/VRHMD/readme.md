@@ -10,7 +10,7 @@ La carpeta es OpenXRDemos
 EL proyecto utiliza OpenXR, XRInteractions, el HMD es un Oculus Rift S.
 
 Descargar el paquete de assets y agregarlo a un proyecto nuevo.
-![Paquete](/AssetsLocomo.unitypackage)
+![Paquete](/guias/VRHMD/AssetsLocomo.unitypackage)
 
 
 
