@@ -9,7 +9,8 @@ La carpeta es OpenXRDemos
 ## Proyecto Locomotion basico con HMD
 EL proyecto utiliza OpenXR, XRInteractions, el HMD es un Oculus Rift S.
 
-La Carpeta es OpenXRDemoLocomotion
+Descargar el paquete de assets y agregarlo a un proyecto nuevo.
+![Paquete](/AssetsLocomo.unitypackage)
 
 
 
