@@ -269,5 +269,8 @@ public class lookWalk : MonoBehaviour
 Para utilizar el NavMesh se debe primero establecer cual es el área que vamos a poder movernos. Debemos primero activar Windows - AI - Navigation.
 Una vez activado el menú podemos definir que áreas pueden ser caminables y cuales no.
 
+## Desplazamiento utilizando puntos de teleporting
+
+
 
 
