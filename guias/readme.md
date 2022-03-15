@@ -268,6 +268,9 @@ public class lookWalk : MonoBehaviour
 ## Utilizar NavMesh para desplasar persona en VR
 Para utilizar el NavMesh se debe primero establecer cual es el área que vamos a poder movernos. Debemos primero activar Windows - AI - Navigation.
 Una vez activado el menú podemos definir que áreas pueden ser caminables y cuales no.
+Revisar la imagen siguiente para orientarse sobre donde aparece el menú del NavMesh y los elementos que lo componen.
+
+
 
 ## Desplazamiento utilizando puntos de teleporting
 
